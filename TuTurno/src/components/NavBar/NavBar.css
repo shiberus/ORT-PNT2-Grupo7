@@ -42,7 +42,7 @@
 }
 
 .NavBar__link {
-    color: #333;
+    color: whi;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
@@ -54,7 +54,7 @@
 
 .NavBar__link--active {
     border-bottom: 2px solid #888;
-    color: #888;
+    color: white;
 }
 
 .NavBar__toggle {

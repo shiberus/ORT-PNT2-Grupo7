@@ -10,7 +10,7 @@ export const loadUserData = async ({ isSignUp = false, user = null } = {}) => {
         if (!user) {
             const { data, error } = await supabase.auth.getUser()
             if (error || !data?.user) {
-              console.log({error, data})
+                console.log({error, data})
                 throw new Error("No se pudo obtener el usuario recién registrado.")
             }
             user = data.user;

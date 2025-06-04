@@ -16,7 +16,7 @@ const useUserStore = create(
       setTurnos: (turnos) => set({ turnos }),
 
       // --- ACCIONES ---
-      addTurno: async (fecha, horario) => {
+      addTurno: async (fecha, horario, especialidad) => {
         const { user, turnos } = get();
 
         if (!user) {
@@ -28,14 +28,16 @@ const useUserStore = create(
           // Insertar en Supabase
           const {
             error: insertError,
-            data: [turnoNuevo],
+            data: turnoNuevo
           } = await supabase
             .from("turnos")
-            .insert([{ user_id: user.id, fecha, horario }], {
-              returning: "representation",
-            });
-
+            .insert([{ user_id: user.id, fecha, horario, especialidad }])
+            .select();
+          
+            console.log(turnoNuevo);
+            
           if (insertError) throw insertError;
+
           set({
             turnos: [...turnos, ...turnoNuevo],
           });

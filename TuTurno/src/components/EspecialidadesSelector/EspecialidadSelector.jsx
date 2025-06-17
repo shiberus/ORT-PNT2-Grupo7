@@ -26,7 +26,7 @@ return (
             <button
             key={e}
             onClick={() => onSelect(e)}
-            className="bg-orange-200 hover:bg-orange-300 text-orange-800 font-medium py-2 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
+            className="bg-orange-200 hover:bg-orange-300 text-orange-800 font-medium py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
             >
             {e}
             </button>

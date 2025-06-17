@@ -49,7 +49,7 @@ const useUserStore = create(
       removeTurno: async (turnoId) => {
         const { user, turnos } = get();
         const numericId = Number(turnoId);
-        const turnoIds = turnos.map((t) => t.id);
+        const turnoIds = turnos.map((t) => t.turno_id);
 
         if (!user) {
           console.warn("Usuario no logueado.");
@@ -74,7 +74,7 @@ const useUserStore = create(
 
           // Actualizar estado local
           set({
-            turnos: turnos.filter((r) => Number(r.id) !== numericId),
+            turnos: turnos.filter((r) => Number(r.turno_id) !== numericId),
           });
         } catch (error) {
           console.error("Error al eliminar favorito:", error);

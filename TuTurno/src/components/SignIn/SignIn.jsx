@@ -1,29 +1,32 @@
 import { useRef, useState } from 'react';
-import styles from "./SignIn.module.css"
+import styles from "./SignIn.module.css";
 import { signIn } from '../../auth/auth.service';
+import { useNavigate } from 'react-router';
 
 export default function Login() {
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
     try {
-      await signIn(emailRef.current.value, passwordRef.current.value);
-    } catch (err) { 
+      await signIn(emailRef.current.value, passwordRef.current.value); 
+      navigate("/profile"); 
+    } catch (err) {
       console.error(err.message);
       setError('Email o contraseña incorrectos');
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className={styles.container}>
+    <form onSubmit={handleLogin} className={styles.container}>
       <h2 className={styles.title}>Login</h2>
 
       <input
@@ -41,7 +44,7 @@ export default function Login() {
       />
 
       <button
-        onClick={handleLogin}
+        type="submit" 
         disabled={loading}
         className={styles.button}
       >
@@ -49,6 +52,7 @@ export default function Login() {
       </button>
 
       {error && <p className={styles.error}>{error}</p>}
-    </div>
+    </form>
   );
 }
+

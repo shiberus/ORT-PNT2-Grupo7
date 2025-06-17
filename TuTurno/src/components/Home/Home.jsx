@@ -27,16 +27,13 @@ return (
         </>
     ) : (
         <>
-        <button>
-            Volver
-        </button>
         <h2 className="text-2xl font-semibold text-blue-700 mb-4">Hola {user.email} 👋</h2>
         {!especialidad ? (
             <EspecialidadSelector onSelect={setEspecialidad} />
         ) : (
             <>
             <h3 className="text-xl font-medium mb-4">Especialidad seleccionada: <span className="text-blue-600">{especialidad}</span></h3>
-            <Calendario onSelect={setTurno} especialidad={especialidad} />
+            <Calendario onSelect={setTurno} especialidad={especialidad} onVolver={() => setEspecialidad(null)}/>
             </>
         )}
         </>

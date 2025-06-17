@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "./SignUp.module.css";
 import { signUp } from "../../auth/auth.service";
+import { useNavigate } from "react-router";
 
 export default function SignUp() {
   const emailRef = useRef("");
@@ -8,8 +9,10 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
     try {
@@ -19,6 +22,7 @@ export default function SignUp() {
       );
       setMessage(message);
       console.log(message);
+      setTimeout(() => navigate("/signin"), 1000);
     } catch (err) {
       console.error(err.message);
       setError("Email o contraseña incorrectos");
@@ -31,30 +35,33 @@ export default function SignUp() {
     <div className={styles.container}>
       <h2 className={styles.title}>SignUp</h2>
 
-      <input
-        ref={emailRef}
-        type="email"
-        placeholder="Email"
-        className={styles.input}
-      />
+      <form onSubmit={handleSignUp}>
+        <input
+          ref={emailRef}
+          type="email"
+          placeholder="Email"
+          className={styles.input}
+        />
 
-      <input
-        ref={passwordRef}
-        type="password"
-        placeholder="Contraseña"
-        className={styles.input}
-      />
+        <input
+          ref={passwordRef}
+          type="password"
+          placeholder="Contraseña"
+          className={styles.input}
+        />
 
-      <button
-        onClick={handleSignUp}
-        disabled={loading}
-        className={styles.button}
-      >
-        {loading ? "Cargando..." : "Crear cuenta"}
-      </button>
+        <button
+          type="submit"
+          disabled={loading}
+          className={styles.button}
+        >
+          {loading ? "Cargando..." : "Crear cuenta"}
+        </button>
+      </form>
 
       {error && <p className={styles.error}>{error}</p>}
-      {message && <p> {message}</p>}
+      {message && <p>{message}</p>}
     </div>
   );
 }
+

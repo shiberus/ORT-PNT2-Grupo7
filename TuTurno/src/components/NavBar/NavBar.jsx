@@ -3,9 +3,12 @@ import { NavLink, useNavigate } from "react-router";
 
 import useUserStore from "../../stores/useUserStore";
 
+
 import bellIcon from "/bell-icon.png";
 import "./NavBar.css";
 import { supabase } from "../../auth/supabaseAuth";
+
+
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -68,6 +71,7 @@ const NavBar = () => {
         </div>
 
         <div className={`NavBar__links ${menuOpen ? "is-active" : ""}`}>
+          
           <NavLink to="/" className={linkClass} onClick={closeMenu}>
             Inicio
           </NavLink>

@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EspecialidadSelector from "../EspecialidadesSelector/EspecialidadSelector";
 import useUserStore from "../../stores/useUserStore";
-import { Link } from "react-router"; 
+//import { Link } from "react-router"; 
 import Calendario from "../Calendario/Calendario";
+import { Link, useLocation } from "react-router-dom"
 
 const Home = () => {
 const user = useUserStore((state) => state.user);
 const [especialidad, setEspecialidad] = useState(null);
 const [turno, setTurno] = useState(null);
+
+const location = useLocation();
+
+useEffect(() => {
+  if (location.pathname === "/") {
+    setEspecialidad(null);
+    setTurno(null); // opcional, si querés reiniciar el turno también
+  }
+}, [location.pathname]);
 
 return (
 <div className="min-h-screen bg-blue-50 flex items-center justify-center p-6">

@@ -31,37 +31,35 @@ export default function SignUp() {
     }
   };
 
-  return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>SignUp</h2>
+ return (
+  <form onSubmit={handleSignUp} className={styles.container}>
+    <h2 className={styles.title}>SignUp</h2>
 
-      <form onSubmit={handleSignUp}>
-        <input
-          ref={emailRef}
-          type="email"
-          placeholder="Email"
-          className={styles.input}
-        />
+    <input
+      ref={emailRef}
+      type="email"
+      placeholder="Email"
+      className={styles.input}
+    />
 
-        <input
-          ref={passwordRef}
-          type="password"
-          placeholder="Contraseña"
-          className={styles.input}
-        />
+    <input
+      ref={passwordRef}
+      type="password"
+      placeholder="Contraseña"
+      className={styles.input}
+    />
 
-        <button
-          type="submit"
-          disabled={loading}
-          className={styles.button}
-        >
-          {loading ? "Cargando..." : "Crear cuenta"}
-        </button>
-      </form>
+    <button
+      type="submit"
+      disabled={loading}
+      className={styles.button}
+    >
+      {loading ? "Cargando..." : "Crear cuenta"}
+    </button>
 
-      {error && <p className={styles.error}>{error}</p>}
-      {message && <p>{message}</p>}
-    </div>
-  );
+    {error && <p className={styles.error}>{error}</p>}
+    {message && <p>{message}</p>}
+  </form>
+);
 }
 

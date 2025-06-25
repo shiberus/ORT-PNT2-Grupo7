@@ -10,7 +10,9 @@ export const signIn = async (email, password) => {
 }
 
 export const signUp = async (email, password) => {
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({ email, password,   options: {
+    emailRedirectTo: 'https://tuturno-g7.netlify.app/'
+    } });
     if (error) throw error;
     console.log({data})
     return await loadUserData({ isSignUp: true, user: data.user });

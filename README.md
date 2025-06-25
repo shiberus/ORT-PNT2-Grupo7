@@ -1,5 +1,7 @@
 # ORT-PNT2-Grupo7
 
+## Developers: REDAL MARIA CLARA - LOPEZ CANE SANTIAGO - GRECO NICOLAS MARTIN
+
 ## 🗓️ Turnera Médica - Documentación
 
 ### 📦 Requisitos previos
